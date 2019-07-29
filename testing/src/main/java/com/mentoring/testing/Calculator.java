@@ -40,4 +40,12 @@ public class Calculator {
         return DATABASE_TO_DELETE;
     }
 
+    public void TripleDelete() {
+        numberService.deleteDatabase();
+        numberService.deleteDatabase();
+        numberService.deleteDatabase();
+        System.out.println("The deleteDatabase must be invoked 3 times!");
+        System.out.println("The text must be shown!");
+    }
+
 }
