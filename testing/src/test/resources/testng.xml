@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="TestNgMavenExampleSuite" parallel="false">
-  <test name="unit">
+    <test name="unit">
     <packages>
       <package name="com.mentoring.testing"/>
     </packages>
-  </test>
+    </test>
+    <test name="missed">
+        <classes>
+            <class name="com.mentoring.testing.Calculator"/>
+        </classes>
+    </test>
 </suite>

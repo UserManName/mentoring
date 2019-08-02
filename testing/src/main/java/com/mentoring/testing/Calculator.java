@@ -23,7 +23,7 @@ public class Calculator {
 
     public Integer getIncrementedNumber() {
         Integer number = numberService.getNumber();
-        return number ++;
+        return ++number;
     }
 
     public Integer incrementNumber(Integer number) {
