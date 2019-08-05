@@ -1,6 +1,5 @@
 package com.mentoring.testing;
 
-import javafx.scene.effect.Reflection;
 import org.easymock.Mock;
 import org.easymock.MockType;
 import org.easymock.TestSubject;
@@ -10,9 +9,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import java.lang.reflect.Field;
+
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 import static org.easymock.EasyMock.expectLastCall;
 import static org.easymock.EasyMock.resetToDefault;
@@ -43,6 +41,11 @@ public class CalculatorTest {
         resetToDefault(numberService);
     }
 
+    @DataProvider
+    public Object[][] localeData() {
+        return new Object[][]{{1},{2},{3},{4}};
+    }
+
     @Test
     public void getIncrementedNumberTest() {
         //Give
@@ -53,14 +56,14 @@ public class CalculatorTest {
         assertEquals(calculator.getIncrementedNumber(), new Integer(5));
     }
 
-    @Test// assert Argument // multiple parameters
-    public void incrementedNumberTest() {
+    @Test(dataProvider = "localeData")// assert Argument // multiple parameters
+    public void incrementedNumberTest(int num) {
         //Give
-        expect(numberService.increment(2)).andReturn(2);
+        expect(numberService.increment(num)).andReturn(num);
         //When
         replay(numberService);
         //Than
-        assertEquals(calculator.incrementNumber(2), new Integer(2));
+        assertEquals(calculator.incrementNumber(num), new Integer(num));
     }
 
     //@DataProvider
@@ -76,9 +79,9 @@ public class CalculatorTest {
     @Test// PowerMock
     public void getDeletedDatabaseTest() {
         //Give
-        Whitebox.getInternalState();
+        Whitebox.getInternalState("/delete/noproduction/database", "DATABASE_TO_DELETE", NumberService.class);
         //When
-
+        replay(numberService);
         //Than
         assertEquals(calculator.getDeletedDatabase(1), DATABASE_TO_DELETE);
     }
