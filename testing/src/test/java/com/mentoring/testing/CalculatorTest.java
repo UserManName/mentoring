@@ -22,7 +22,7 @@ import static org.easymock.EasyMock.expect;
 import static com.mentoring.testing.NumberService.DATABASE_TO_DELETE;
 
 public class CalculatorTest {
-//рефлексия, аргументы, junit mokito, заменить параметры, аргументы, пропуск тестов
+//конф файл для тестов, проверка аргументов через мокито, создание мока через повермок для изменения psf поля
     @TestSubject
     private Calculator calculator;
 
@@ -78,10 +78,10 @@ public class CalculatorTest {
 
     @Test// PowerMock
     public void getDeletedDatabaseTest() {
+
         //Give
         Whitebox.getInternalState("/delete/noproduction/database", "DATABASE_TO_DELETE", NumberService.class);
         //When
-        replay(numberService);
         //Than
         assertEquals(calculator.getDeletedDatabase(1), DATABASE_TO_DELETE);
     }

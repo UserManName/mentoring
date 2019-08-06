@@ -1,5 +1,6 @@
 package com.mentoring.testing;
 
+import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
@@ -23,9 +24,10 @@ public class ScopeTest {
     }
 
     // Disable the test!
-    //@Test
+    @Test
     public void test1() {
         System.out.println("Looser! Skip the test!");
+        throw new SkipException("Skipping");
     }
 
     // Disable the test with testng context!

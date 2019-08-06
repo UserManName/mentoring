@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="TestNgMavenExampleSuite" parallel="false">
     <test name="unit">
-    <packages>
-      <package name="com.mentoring.testing"/>
-    </packages>
-    </test>
-    <test name="missed">
+        <packages>
+            <package name="com.mentoring.testing"/>
+        </packages>
         <classes>
-            <class name="com.mentoring.testing.Calculator"/>
+            <class name="com.mentoring.testing.ScopeTest">
+                <methods>
+                    <exclude name="test2" />
+                </methods>
+            </class>
+            <class name="com.mentoring.testing.IntegrationTest">
+                <methods>
+                    <exclude name="test" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name = "integration">
+        <classes>
+            <class name="com.mentoring.testing.IntegrationTest">
+            </class>
         </classes>
     </test>
 </suite>
